@@ -16,6 +16,7 @@ function ListaEmprestimos() {
   const fetchEmprestimos = async () => {
     try {
       const response = await emprestimoService.getAll();
+      console.log('Empréstimos recebidos:', response.data);
       setEmprestimos(response.data);
     } catch (error) {
       console.error('Erro ao buscar empréstimos:', error);
@@ -75,8 +76,8 @@ function ListaEmprestimos() {
         <tbody>
           {emprestimos.map((emprestimo) => (
             <tr key={emprestimo.id}>
-              <td>{emprestimo.livroId}</td>
-              <td>{emprestimo.usuarioId}</td>
+              <td>{emprestimo.livro ? emprestimo.livro.titulo : 'N/A'}</td>
+              <td>{emprestimo.usuario ? emprestimo.usuario.nome : 'N/A'}</td>
               <td>{emprestimo.dataEmprestimo}</td>
               <td>{emprestimo.dataDevolucao}</td>
               <td>{emprestimo.status}</td>

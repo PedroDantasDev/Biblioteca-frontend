@@ -49,9 +49,16 @@ function EmprestimoForm({ emprestimo, onSave, onCancel }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Dados do empréstimo a serem enviados:', formData);
+    const emprestimoData = {
+      livro: { id: parseInt(formData.livroId) },
+      usuario: { id: parseInt(formData.usuarioId) },
+      dataEmprestimo: formData.dataEmprestimo,
+      dataDevolucao: formData.dataDevolucao,
+      status: formData.status
+    };
+    console.log('Dados do empréstimo a serem enviados:', JSON.stringify(emprestimoData, null, 2));
     try {
-      const response = await emprestimoService.create(formData);
+      const response = await emprestimoService.create(emprestimoData);
       console.log('Resposta do servidor após criar empréstimo:', response.data);
       onSave(response.data);
     } catch (error) {
