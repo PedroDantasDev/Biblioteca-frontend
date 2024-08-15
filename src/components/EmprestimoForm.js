@@ -49,18 +49,16 @@ function EmprestimoForm({ emprestimo, onSave, onCancel }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Dados a serem enviados:', formData);
+    console.log('Dados do empréstimo a serem enviados:', formData);
     try {
-      let response;
-      if (emprestimo) {
-        response = await emprestimoService.update(emprestimo.id, formData);
-      } else {
-        response = await emprestimoService.create(formData);
-      }
-      console.log('Resposta do servidor:', response.data);
+      const response = await emprestimoService.create(formData);
+      console.log('Resposta do servidor após criar empréstimo:', response.data);
       onSave(response.data);
     } catch (error) {
       console.error('Erro ao salvar empréstimo:', error);
+      if (error.response) {
+        console.error('Resposta de erro do servidor:', error.response.data);
+      }
     }
   };
 

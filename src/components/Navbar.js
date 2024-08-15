@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import logo from '../imgs/logoelotech.png'; // Corrigido para subir um nível e acessar a pasta imgs
+import logo from '../imgs/logoelotech.png';
 
 function NavBar() {
   return (
